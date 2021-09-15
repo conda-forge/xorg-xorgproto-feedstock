@@ -1,8 +1,8 @@
 {% set xorg_name = "xorgproto" %}
 {% set xorg_category = "proto" %}
 {% set name = "xorg-" ~ xorg_name %}
-{% set version = "2021.4" %}
-{% set sha256 = "0f5157030162844b398e7ce69b8bb967c2edb8064b0a9c9bb5517eb621459fbf" %}
+{% set version = "2021.5" %}
+{% set sha256 = "aa2f663b8dbd632960b24f7477aa07d901210057f6ab1a1db5158732569ca015" %}
 {% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
@@ -42,7 +42,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: licenses/
-  summary: 'X.org protocol headers'
+  summary: X.org protocol headers
 
 extra:
   recipe-maintainers:
