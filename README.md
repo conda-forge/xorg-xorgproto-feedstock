@@ -1,11 +1,11 @@
-About xorg-xorgproto
-====================
+About xorg-xorgproto-feedstock
+==============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/xorg-xorgproto-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.x.org/
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/xorg-xorgproto-feedstock/blob/main/LICENSE.txt)
 
 Summary: X.org protocol headers
 
@@ -38,6 +38,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13012&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/xorg-xorgproto-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13012&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/xorg-xorgproto-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
