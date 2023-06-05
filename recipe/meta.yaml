@@ -1,8 +1,8 @@
 {% set xorg_name = "xorgproto" %}
 {% set xorg_category = "proto" %}
 {% set name = "xorg-" ~ xorg_name %}
-{% set version = "2022.2" %}
-{% set sha256 = "5d13dbf2be08f95323985de53352c4f352713860457b95ccaf894a647ac06b9e" %}
+{% set version = "2023.1" %}
+{% set sha256 = "6545e41aceba43c13497ac8084dad5db6deef580a5ea7d0bd7872cfd1be72a13" %}
 {% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
@@ -16,7 +16,7 @@ source:
     - 0001-windows-fds-bits.patch  # [win]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
