@@ -1,8 +1,8 @@
 {% set xorg_name = "xorgproto" %}
 {% set xorg_category = "proto" %}
 {% set name = "xorg-" ~ xorg_name %}
-{% set version = "2023.2" %}
-{% set sha256 = "b61fbc7db82b14ce2dc705ab590efc32b9ad800037113d1973811781d5118c2c" %}
+{% set version = "2024.1" %}
+{% set sha256 = "372225fd40815b8423547f5d890c5debc72e88b91088fbfb13158c20495ccb59" %}
 {% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
