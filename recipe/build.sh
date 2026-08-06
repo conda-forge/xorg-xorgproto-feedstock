@@ -25,6 +25,7 @@ fi
 
 # On Windows we need to regenerate the configure scripts.
 if [ -n "$CYGWIN_PREFIX" ] ; then
+    export PYTHON="$BUILD_PREFIX_M/python.exe"
     am_version=1.15 # keep sync'ed with recipe.yaml
     export ACLOCAL=aclocal-$am_version
     export AUTOMAKE=automake-$am_version
