@@ -4,7 +4,9 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 set -e
 
-# Adopt a Unix-friendly path if we're on Windows (see bld.bat).
+export PYTHON="$BUILD_PREFIX/bin/python"
+
+# Adopt a Unix-friendly path if we're on Windows (see build.bat).
 [ -n "$PATH_OVERRIDE" ] && export PATH="$PATH_OVERRIDE"
 
 # On Windows we want $LIBRARY_PREFIX in both "mixed" (C:/Conda/...) and Unix
@@ -23,7 +25,8 @@ fi
 
 # On Windows we need to regenerate the configure scripts.
 if [ -n "$CYGWIN_PREFIX" ] ; then
-    am_version=1.15 # keep sync'ed with meta.yaml
+    export PYTHON="$BUILD_PREFIX_M/python.exe"
+    am_version=1.15 # keep sync'ed with recipe.yaml
     export ACLOCAL=aclocal-$am_version
     export AUTOMAKE=automake-$am_version
     autoreconf_args=(

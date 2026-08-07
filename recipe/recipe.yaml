@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  version: "2025.1"
+  am_version: "1.15"
+
+package:
+  name: xorg-xorgproto
+  version: ${{ version }}
+
+source:
+  url: https://www.x.org/releases/individual/proto/xorgproto-${{ version }}.tar.xz
+  sha256: 56898c716c0578df8a2d828c9c3e5c528277705c0484381a81960fe1a67668e8
+  patches:
+    - if: win
+      then:
+        - 0001-windows-fds-bits.patch
+
+build:
+  number: 1
+  script:
+    - if: win
+      then: build.bat
+      else: build.sh
+
+requirements:
+  build:
+    - python 3.13.*
+    - if: win
+      then:
+        - m2-autoconf
+        - m2-automake${{ am_version }}
+        - m2-libtool
+        - m2-pkg-config
+        - m2-base
+        - m2-make
+        - ${{ compiler('m2w64_c') }}
+        - ${{ stdlib('m2w64_c') }}
+      else:
+        - pkg-config
+        - gnuconfig
+        - make
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+  host:
+    - xorg-util-macros
+
+tests:
+  - package_contents:
+      include:
+        - X11/extensions/damageproto.h
+
+about:
+  homepage: https://www.x.org/
+  license: MIT
+  license_file: licenses/
+  summary: X.org protocol headers
+
+extra:
+  recipe-maintainers:
+    - pkgw
