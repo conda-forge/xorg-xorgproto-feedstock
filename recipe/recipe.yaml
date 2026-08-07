@@ -46,10 +46,9 @@ requirements:
     - xorg-util-macros
 
 tests:
-  - if: not win
-    then:
-      script:
-        - test -e $PREFIX/include/X11/extensions/damageproto.h
+  - package_contents:
+      include:
+        - X11/extensions/damageproto.h
 
 about:
   homepage: https://www.x.org/
