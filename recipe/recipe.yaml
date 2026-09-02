@@ -34,8 +34,14 @@ requirements:
         - m2-pkg-config
         - m2-base
         - m2-make
-        - ${{ compiler('m2w64_c') }}
-        - ${{ stdlib('m2w64_c') }}
+        - if: target_platform == "win-arm64"
+          then:
+            - ${{ m2w64_c_compiler }}_win-64 ${{ m2w64_c_compiler_version }}.*
+            - ${{ m2w64_c_stdlib }}_win-64 ${{ m2w64_c_stdlib_version }}.*
+        - if: target_platform != "win-arm64"
+          then:
+            - ${{ compiler('m2w64_c') }}
+            - ${{ stdlib('m2w64_c') }}
       else:
         - pkg-config
         - gnuconfig
@@ -44,6 +50,12 @@ requirements:
         - ${{ stdlib('c') }}
   host:
     - xorg-util-macros
+  ignore_run_exports:
+    from_package:
+      - if: target_platform == "win-arm64"
+        then: ${{ m2w64_c_compiler }}_win-64
+      - if: target_platform == "win-arm64"
+        then: ${{ m2w64_c_stdlib }}_win-64
 
 tests:
   - package_contents:
