@@ -1,0 +1,55 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Clay Warren <warren.clay@icloud.com>
+Date: Thu, 3 Sep 2026 12:00:00 -0500
+Subject: [PATCH] Win32: Fix collision over 'None'
+
+X11/X.h defines None as a public X11 constant. Keep that definition out of
+the Windows SDK headers while Xwindows.h and Xwinsock.h include them, then
+restore it for X11 callers. This mirrors the existing ControlMask handling.
+---
+ include/X11/Xwindows.h | 3 +++
+ include/X11/Xwinsock.h | 3 +++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/include/X11/Xwindows.h b/include/X11/Xwindows.h
+--- a/include/X11/Xwindows.h
++++ b/include/X11/Xwindows.h
+@@ -72,6 +72,8 @@
+ #define ATOM wATOM
+ #define BYTE wBYTE
+ #define FreeResource wFreeResource
++#pragma push_macro ("None")
++#undef None
+ #pragma push_macro ("ControlMask")
+ #undef ControlMask
+ #include <windows.h>
+@@ -86,6 +88,7 @@
+ #undef ATOM
+ #undef FreeResource
+ #pragma pop_macro ("ControlMask")
++#pragma pop_macro ("None")
+ #undef CreateWindowA
+ 
+ /*
+diff --git a/include/X11/Xwinsock.h b/include/X11/Xwinsock.h
+--- a/include/X11/Xwinsock.h
++++ b/include/X11/Xwinsock.h
+@@ -52,6 +52,8 @@
+ #define ATOM wATOM
+ #define BYTE wBYTE
+ #define FreeResource wFreeResource
++#pragma push_macro ("None")
++#undef None
+ #pragma push_macro ("ControlMask")
+ #undef ControlMask
+ #include <winsock2.h>
+@@ -63,6 +65,7 @@
+ #undef ATOM
+ #undef FreeResource
+ #pragma pop_macro ("ControlMask")
++#pragma pop_macro ("None")
+ #undef CreateWindowA
+ #undef RT_FONT
+ #undef RT_CURSOR
+-- 
+2.51.0
